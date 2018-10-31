@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Aplicativos
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/create-app">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let app of apps">
+      <ion-item routerLink="/detail-app/{{app.id}}">
+        <ion-icon name="appstore" slot="start" color="primary"></ion-icon>
+        <ion-label>
+          <h2>{{app.name}}</h2>
+          <p>{{app.bundle_id}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" routerLink="/edit-app/{{app.id}}">
+          Editar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list *ngIf="!apps.length">
+    <ion-item>Não possui aplicativos cadastrados</ion-item>
+  </ion-list>
+</ion-content>

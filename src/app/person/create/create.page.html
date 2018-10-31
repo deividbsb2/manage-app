@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar Pessoa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="personForm">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" formControlName="name" maxlength="50" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CPF</ion-label>
+      <ion-input type="number" formControlName="cpf" inputmode="numeric" maxlength="11" max="9999" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">RG</ion-label>
+      <ion-input type="text" formControlName="rg" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Aniversário</ion-label>
+      <ion-datetime cancel-text="Fechar" done-text="Escolher" display-format="DD/MM/YYYY" picker-format="DD MM YYYY"
+        formControlName="birthday" required></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Perfil</ion-label>
+      <ion-select value="1" okText="Escolher" cancelText="Fechar" formControlName="profile_id" required>
+        <ion-select-option *ngFor="let profile of profiles" [value]="profile.id">{{profile.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Aplicativos</ion-label>
+      <ion-select multiple="true" cancelText="Fechar" okText="Escolher" formControlName="apps">
+        <ion-select-option *ngFor="let app of apps" [value]="app.id">{{app.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button shape="round" color="primary" expand="block" [disabled]="!personForm.valid" (click)="save()">Salvar</ion-button>
+  </form>
+</ion-content>
